@@ -27,20 +27,30 @@ export default function InvoicePreview({ data }: any) {
     });
 
     const imgData = canvas.toDataURL("image/png");
-    const pdf = new jsPDF({
-      orientation: "portrait",
-      unit: "mm",
-      format: "a4",
-    });
 
-    const pdfWidth = 190;
+    const pdf = new jsPDF("p", "mm", "a4");
 
-    const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+    const imgWidth = 190;
+    const pageHeight = 297;
 
-    pdf.addImage(imgData, "PNG", 10, 15, pdfWidth, pdfHeight);
+    const imgHeight = (canvas.height * imgWidth) / canvas.width;
 
-    const width = 210;
-    const height = (canvas.height * width) / canvas.width;
+    let heightLeft = imgHeight;
+    let position = 0;
+
+    pdf.addImage(imgData, "PNG", 10, position, imgWidth, imgHeight);
+
+    heightLeft -= pageHeight;
+
+    while (heightLeft > 0) {
+      position = heightLeft - imgHeight;
+
+      pdf.addPage();
+
+      pdf.addImage(imgData, "PNG", 10, position, imgWidth, imgHeight);
+
+      heightLeft -= pageHeight;
+    }
 
     pdf.save(`${data.invoiceNumber}.pdf`);
   };
@@ -101,7 +111,7 @@ export default function InvoicePreview({ data }: any) {
         style={{
           width: "100%",
           maxWidth: "900px",
-          minHeight: "1200px",
+          // minHeight: "1200px",
           padding: "40px",
           margin: "0 auto",
         }}
