@@ -22,7 +22,7 @@ export default function InvoicePreview({ data }: any) {
     if (!element) return;
 
     const canvas = await html2canvas(element, {
-      scale: 2,
+      scale: 1,
       logging: true,
     });
 
