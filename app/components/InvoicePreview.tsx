@@ -30,27 +30,21 @@ export default function InvoicePreview({ data }: any) {
 
     const pdf = new jsPDF("p", "mm", "a4");
 
-    const imgWidth = 190;
-    const pageHeight = 297;
+    const pageWidth = 190;
+    const pageHeight = 277;
 
-    const imgHeight = (canvas.height * imgWidth) / canvas.width;
+    let imgWidth = pageWidth;
+    let imgHeight = (canvas.height * imgWidth) / canvas.width;
 
-    let heightLeft = imgHeight;
-    let position = 0;
+    if (imgHeight > pageHeight) {
+      const ratio = pageHeight / imgHeight;
 
-    pdf.addImage(imgData, "PNG", 10, position, imgWidth, imgHeight);
+      imgHeight = imgHeight * ratio;
 
-    heightLeft -= pageHeight;
-
-    {
-      position = heightLeft - imgHeight;
-
-      pdf.addPage();
-
-      pdf.addImage(imgData, "PNG", 10, position, imgWidth, imgHeight);
-
-      heightLeft -= pageHeight;
+      imgWidth = imgWidth * ratio;
     }
+
+    pdf.addImage(imgData, "PNG", (210 - imgWidth) / 2, 10, imgWidth, imgHeight);
 
     pdf.save(`${data.invoiceNumber}.pdf`);
   };
