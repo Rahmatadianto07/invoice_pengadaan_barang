@@ -200,30 +200,21 @@ export default function InvoicePreview({ data }: any) {
 
         {/* TOTAL */}
 
-        <div className="mt-16">
-          <div className="flex justify-end">
-            <div className="w-80">
-              <div className="flex justify-between mb-3">
-                <span>TOTAL</span>
+        <div className="flex justify-end">
+          <div className="border rounded p-3 bg-white w-95">
+            <div className="flex justify-between">
+              <span>Subtotal</span>
+              <span>Rp {subtotal.toLocaleString("id-ID")}</span>
+            </div>
 
-                <span>Rp {subtotal.toLocaleString("id-ID")}</span>
-              </div>
+            <div className="flex justify-between">
+              <span>PPN 11%</span>
+              <span>Rp {ppn.toLocaleString("id-ID")}</span>
+            </div>
 
-              <div
-                className="
-                    bg-[#208DF5]
-                    px-5
-                    py-4
-                    flex
-                    justify-between
-                    font-bold
-                    text-x
-                    "
-              >
-                <span>TOTAL KESELURUHAN</span>
-
-                <span>Rp {grandTotal.toLocaleString("id-ID")}</span>
-              </div>
+            <div className="flex justify-between font-bold text-xl py-5 px-3">
+              <span>Total</span>
+              <span>Rp {grandTotal.toLocaleString("id-ID")}</span>
             </div>
           </div>
         </div>
