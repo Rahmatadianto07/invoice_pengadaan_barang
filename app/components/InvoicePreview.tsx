@@ -37,7 +37,7 @@ export default function InvoicePreview({ data }: any) {
 
     const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
 
-    pdf.addImage(imgData, "PNG", 10, 10, pdfWidth, pdfHeight);
+    pdf.addImage(imgData, "PNG", 10, 15, pdfWidth, pdfHeight);
 
     const width = 210;
     const height = (canvas.height * width) / canvas.width;
