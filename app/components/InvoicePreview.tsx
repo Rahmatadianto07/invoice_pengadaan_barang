@@ -22,7 +22,7 @@ export default function InvoicePreview({ data }: any) {
     if (!element) return;
 
     const canvas = await html2canvas(element, {
-      scale: 1,
+      scale: 2,
       logging: true,
     });
 
@@ -42,7 +42,7 @@ export default function InvoicePreview({ data }: any) {
 
     heightLeft -= pageHeight;
 
-    while (heightLeft > 0) {
+    {
       position = heightLeft - imgHeight;
 
       pdf.addPage();
@@ -61,7 +61,7 @@ export default function InvoicePreview({ data }: any) {
         <div>
           <h1
             className="
-        text-6xl
+        text-4xl
         font-bold
         tracking-[12px]
       "
@@ -112,7 +112,7 @@ export default function InvoicePreview({ data }: any) {
           width: "100%",
           maxWidth: "900px",
           // minHeight: "1200px",
-          padding: "40px",
+          padding: "24px",
           margin: "0 auto",
         }}
       >
@@ -122,7 +122,7 @@ export default function InvoicePreview({ data }: any) {
           <div>
             <h1
               className="
-                text-5xl
+                text-3xl
                 font-bold
                 tracking-[8px]
               "
@@ -182,7 +182,7 @@ export default function InvoicePreview({ data }: any) {
           <tbody>
             {data.items.map((item: any, index: number) => (
               <tr key={index}>
-                <td className="py-6">
+                <td className="py-3">
                   <div className="font-semibold text-xl">{item.namaBarang}</div>
 
                   <div
@@ -230,7 +230,7 @@ export default function InvoicePreview({ data }: any) {
         </div>
         {/* FOOTER */}
 
-        <div className="mt-32">
+        <div className="mt-6">
           <p className="uppercase mb-4">Dibayarkan Kepada :</p>
           {data.signature && (
             <img
